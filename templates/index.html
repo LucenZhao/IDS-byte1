@@ -21,41 +21,107 @@
 
   <body role="document">
 
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="about">About</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+
 
     <div class="container theme-showcase" role="main">
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
-	<h1>Data Pipeline Project Fusion Byte Example</h1>
-        <p>This is the Fusion Byte of the Data Pipeline class. This
-        page should explain what question you want to answer and use
-        the visualization tools provided by Google Fusion Table to
-        answer it. </p>
+	<h2>ATP Player Performance Analysis During 2011-2015</h2>
+		<p>The is the byte 1 assignment for 05-839 Interactive Data Science.</p>
+        <p>Name: Lucen Zhao <br/>
+         Andrew ID: lucenz </p>
       </div>
 
+  <h3>Who is the most influential men's tennis player during 2011-2015?</h3>
+  <p>This is a simple but worth exploring question. Every year, the ATP players will earn points from each tournament they played, which will
+  be accumulated and ordered as ATP ranking. From the rankings, we can approximately know who is the most influential player at this time.<br/>
+  However, how can we know who is the best player during a period of time, let's say, 5 years?</p>
+  <p>To answer this question, I explored the data of every ATP matches during 2011-2015. Because of the nature of ATP tournaments, players will be 
+  eliminated during the tournament, and only the best players can come to the finals. In order words, best players will tend to play more ganmes
+  than others. Moreover, the best players in the world will attend most of the high-level ATP games, such as Grand Slam and Masters. Hence, by 
+  measuring the number of games a player played in these series, we can get a glimpse on their overall performance during this time.</p>
+  <p>Based on this simple assumption, I worked on following steps for visualization:</p>
+  <ul>
+  	<li>Filtering the data to keep only matches from Grand Slam and Masters</li>
+  	<li>Construct the chart with directed links between winner and loser of each game</li>
+  	<li>Setting a weight with the # from best_of (Grans Slam: BO5; Master: BO3. It is reasonable to do so since Grand Slams are more important)</li>
+  	<li>Visualize the data and set an option for different surfaces</li>
+  </ul>
+  <p>The results of visualization is shown below. In the graphs, the larger a node is, the more influential is the player.</p>
+  <div style="margin-bottom: 30px"></div>
+  <!-- Visualized data wrapped in tabs -->
+  <!-- Tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">All types of surface</a></li>
+    <li><a data-toggle="tab" href="#menu1">Hard</a></li>
+    <li><a data-toggle="tab" href="#menu2">Grass</a></li>
+    <li><a data-toggle="tab" href="#menu3">Clay</a></li>
+  </ul>
+  <!-- Visualizations -->
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+<div class="row">
+  <div class="col-md-6">
+  <iframe width="500" height="300" scrolling="no" frameborder="no" src="https://fusiontables.google.com/embedviz?containerId=googft-gviz-canvas&amp;viz=GVIZ&amp;t=GRAPH&amp;gc=false&amp;gd=true&amp;sdb=1&amp;rmax=100000&amp;q=select+col20%2C+col10%2C+col28+from+1Kqc5TOhnqJPFWoRMWiYEKafbWp7PDu0T98-PUWaO+where+col4+in+(&#39;G&#39;%2C+&#39;M&#39;)&amp;qrs=+and+col20+%3E%3D+&amp;qre=+and+col20+%3C%3D+&amp;qe=&amp;uiversion=2&amp;state=%7B%22ps%22%3A%221_1_-1e_-4_x_-1q_11_2n_-r_-d_3j_-i_7_h_-10_m_2p_-10_-v_1d_-1o_g_29_-29_7_3p_-2e_18_f_4_-l_27_-2x_t_1n_a_i_13_-2b_q_a_-1v_-1h_1z_-1a_1r_2h_-1k_-15_u_-1a_-1m_9_-7_-y_1j_-3_15_14_-f_1m_21_-15_1a_j_-s_-1p_32_-24_-x_v_-25_-e_16_-2l_-8_3l_-2w_4_34_-9_r_11_-o_14_1a_-2u_-12_4h_-2y_-k_17_-23_1q_33_-2g_-1e_2v_-1r_-p_1y_2_1_e_-l_-1a_6_b_-18_2u_-2j_-n_3q_-3d_e_24_-3b_-b_o_-1o_20_l_-48_-8_3i_-10_-1f_1m_2_1s_20_-3d_1v_2g_-5_-2f_i_-7_-1a_8_h_-2_t_-30_1f_28_-4q_b_m_-4h_-n_%22%2C%22cx%22%3A-68.30851711366317%2C%22cy%22%3A4.122142710089031%2C%22sw%22%3A980.453298487689%2C%22sh%22%3A403.9917510976998%2C%22z%22%3A1.609832557244899%7D&amp;gco_forceIFrame=true&amp;gco_hasLabelsColumn=true&amp;width=500&amp;height=300"></iframe>
+  </div>
+  <div class="col-md-5">
+  <p style="margin-top: 50px">From the graph, Djokovic is the most influential player, with imporssively most wins and almost no losses. Federer, Murray and 
+  Nadal are also quite influential during this period of time. The results are similar to people's impression on the "Big4" players 
+  during that time.</p>
+  </div>
+</div>      
+    </div>
 
-<iframe width="500" height="300" scrolling="no" frameborder="no"
-	src="https://www.google.com/fusiontables/embedviz?q=select+col16%3E%3E0+from+1ymz3EtGdi4qKGMl5AxEFXtTlgk3tKi8iCpjTzvM&amp;viz=MAP&amp;h=false&amp;lat=38.071424981566125&amp;lng=-85.15232666015623&amp;t=1&amp;z=9&amp;l=col16%3E%3E0&amp;y=3&amp;tmplt=3&amp;hml=TWO_COL_LAT_LNG"></iframe>
+    <div id="menu1" class="tab-pane fade">
+<div class="row">
+  <div class="col-md-6">
+  <iframe width="500" height="300" scrolling="no" frameborder="no" src="https://fusiontables.google.com/embedviz?containerId=googft-gviz-canvas&amp;viz=GVIZ&amp;t=GRAPH&amp;gc=false&amp;gd=true&amp;sdb=1&amp;rmax=100000&amp;q=select+col20%2C+col10%2C+col28+from+1Kqc5TOhnqJPFWoRMWiYEKafbWp7PDu0T98-PUWaO+where+col4+in+(&#39;G&#39;%2C+&#39;M&#39;)+and+col2+%3D+&#39;Hard&#39;&amp;qrs=+and+col20+%3E%3D+&amp;qre=+and+col20+%3C%3D+&amp;qe=&amp;uiversion=2&amp;state=%7B%22ps%22%3A%221_1_-1t_0_2n_-1h_12_x_-p_i_h_-1f_-q_2p_-1a_e_3j_-21_-m_29_-1p_-19_3p_-2x_m_1d_-r_-r_f_-a_-e_a_-2j_-a_1n_-2d_a_27_-4_q_2h_-2s_1c_1z_-1n_1m_9_-2_5_u_-19_-1f_13_-24_11_11_-1t_m_21_-25_1h_14_-n_1g_1j_-14_1l_16_-8_-w_33_-31_-c_3l_-2i_-s_j_-3d_a_4h_-w_z_v_-l_-2_32_-20_-1l_34_-2j_v_1a_-3c_-u_2v_-2u_-z_17_-t_-15_6_-11_-e_1y_-10_0_2u_-2u_5_3q_-2a_-17_e_-k_-1d_24_-3r_-1i_o_-2_17_l_-2g_-1o_3i_-2k_-1c_1m_-e_11_2g_-3e_-3_8_g_-a_t_-24_-z_i_-1f_-b_20_-25_o_28_-1c_-35_m_-as_c_%22%2C%22cx%22%3A-68.30851711366317%2C%22cy%22%3A4.122142710089031%2C%22sw%22%3A980.453298487689%2C%22sh%22%3A403.9917510976998%2C%22z%22%3A1.609832557244899%7D&amp;gco_forceIFrame=true&amp;gco_hasLabelsColumn=true&amp;width=500&amp;height=300"></iframe>
+  </div>
+  <div class="col-md-5">
+  <p style="margin-top: 50px">Djokovic has a great advantage in matches with hard surface. According to our results, he is the most 
+  influential player in hard surface matches with no doubt.</p>
+  </div>
+</div>   
+    </div>
+    
+    <div id="menu2" class="tab-pane fade">
+<div class="row">
+  <div class="col-md-6">
+  <iframe width="500" height="300" scrolling="no" frameborder="no" src="https://fusiontables.google.com/embedviz?containerId=googft-gviz-canvas&amp;viz=GVIZ&amp;t=GRAPH&amp;gc=false&amp;gd=true&amp;sdb=1&amp;rmax=100000&amp;q=select+col20%2C+col10%2C+col28+from+1Kqc5TOhnqJPFWoRMWiYEKafbWp7PDu0T98-PUWaO+where+col4+%3D+&#39;G&#39;+and+col2+%3D+&#39;Grass&#39;&amp;qrs=+and+col20+%3E%3D+&amp;qre=+and+col20+%3C%3D+&amp;qe=&amp;uiversion=2&amp;state=%7B%22ps%22%3A%221_3j_-2s_7_x_-1s_k_2n_-a_1_27_-25_-8_15_-13_-j_12_-11_1y_v_-2p_w_2f_n_-o_1_-2g_-1p_1n_-6_-10_2v_-47_s_3h_-3w_1m_1b_-1l_-1g_1h_w_d_7_15_-1a_f_-1j_-5_9_-3g_-19_3q_-m_-n_n_-z_4_3d_-3b_1b_3i_-10_1c_20_r_1r_i_-1r_-24_a_-2_1j_1s_26_f_3f_-3u_0_j_-32_-1v_2l_1p_u_33_-2p_-14_11_-20_1j_14_1b_-1_29_-7_-1k_19_-p_-2d_49_-3d_-a_h_-3m_-t_30_-1h_15_1j_-b_x_l_-26_-15_37_-1r_1x_m_-22_13_2e_12_18_28_-13_j_1d_j_15_t_-1u_-x_1z_-38_20_32_-2s_-2k_3b_-2t_1i_2j_2_s_26_-1j_-s_16_1_-2l_44_2u_2j_o_c_-9_5_-v_-1g_1i_6_-s_3l_-1t_2f_e_-2j_1s_3m_-1c_-11_0_-29_-2t_z_-2h_-n_2g_-26_-2c_4a_-4k_-v_w_c_4_3p_t_-1r_3_-11_-21_2h_-r_-14_3w_-l_p_3c_-3k_2c_4h_1i_-s_p_8_-1f_2d_f_-1r_2i_1m_1w_50_f_l_4k_-3_20_17_-p_-1t_13_-1g_2b_2p_-5f_y_u_-28_26_21_-l_19_1m_18_-f_2w_3s_2s_1y_-3p_10_4i_-b_-f_41_-ac_1j_8_-4f_-1y_24_-t_33_1a_-1h_-2s_22_-4p_-1c_1l_k_-26_39_-32_2p_2u_-39_q_5j_-1b_-2b_6_26_-1t_42_-ah_n_1q_76_-2f_2y_8k_1w_43_7r_25_3t_-2o_-3p_1o_83_-1z_34_70_2k_3k_-3r_g_%22%2C%22cx%22%3A-47.569776975087784%2C%22cy%22%3A-14.098404978313487%2C%22sw%22%3A980.453298487689%2C%22sh%22%3A403.9917510976998%2C%22z%22%3A1.110761205260155%7D&amp;gco_forceIFrame=true&amp;gco_hasLabelsColumn=true&amp;width=500&amp;height=300"></iframe>
+  </div>
+  <div class="col-md-5">
+  <p style="margin-top: 50px">Although Federer is well-known for his dominance on grass surface, during 2011-2015, Djokovic and Murray has 
+  better performance in these matches.</p>
+  </div> 
+</div>
+    </div>
 
+    <div id="menu3" class="tab-pane fade">
+<div class="row">
+  <div class="col-md-6">
+  <iframe width="500" height="300" scrolling="no" frameborder="no" src="https://fusiontables.google.com/embedviz?containerId=googft-gviz-canvas&amp;viz=GVIZ&amp;t=GRAPH&amp;gc=false&amp;gd=true&amp;sdb=1&amp;rmax=100000&amp;q=select+col20%2C+col10%2C+col28+from+1Kqc5TOhnqJPFWoRMWiYEKafbWp7PDu0T98-PUWaO+where+col4+in+(&#39;G&#39;%2C+&#39;M&#39;)+and+col2+%3D+&#39;Clay&#39;&amp;qrs=+and+col20+%3E%3D+&amp;qre=+and+col20+%3C%3D+&amp;qe=&amp;uiversion=2&amp;state=%7B%22ps%22%3A%221_21_-16_-i_1h_-20_v_1j_-v_d_7_-8_-10_1d_b_13_h_-24_-v_5_-f_1k_17_5_-g_15_-1f_e_x_-1f_w_1b_-2r_-q_14_-r_22_2y_g_c_t_-f_10_i_-1j_-1n_8_-c_j_6_-o_-6_3_-1v_c_u_-n_-n_v_-1o_-b_28_-1j_1o_1q_-2r_-7_1i_2_q_z_-1a_1b_p_-2j_1f_1_1_7_11_-k_-1j_22_-1j_-17_j_-13_-14_2u_s_-g_3m_7_-1e_m_-2c_-1f_f_-1m_-t_0_-1y_1i_2d_-1w_-2_n_-1b_-1_3c_-2r_9_1y_-x_19_1z_v_1c_w_-8_-4_26_-23_-c_12_-2p_l_3i_-2z_-1a_o_-g_8_2p_-28_0_a_-q_-1x_e_-33_o_1n_q_0_3l_-v_u_9_k_-12_20_-1z_-1n_2l_-8_-1m_19_-o_-16_3q_-2m_w_16_-2c_h_3t_-8_-k_1a_-2e_-9_2i_-14_27_41_-24_-27_1o_y_8_1l_-v_-27_2e_-1h_-2g_3b_-13_1t_49_-1_2h_3p_1b_-g_30_1m_-6_33_-20_-19_l_-2a_-2n_3d_-3k_u_37_c_1r_32_1f_p_3j_-2x_-1t_2h_-2k_25_3h_-1r_-2b_13_-28_27_3k_-1o_36_3f_-d_-b_29_-3h_-1m_4h_t_23_2v_1i_1b_1m_i_-1y_3w_-36_1a_43_-2h_-17_1s_-15_-2i_4i_-2p_-1j_4k_-9i_-29_2w_-2s_2n_42_-3k_-m_2f_5v_2x_34_7n_28_2g_7w_-25_2n_w_i_44_-1a_-22_39_-97_2f_5j_-7e_-35_24_-ad_n_27_-m_-3i_50_90_5_4a_2j_-z_2j_i_-1k_%22%2C%22cx%22%3A-47.569776975087784%2C%22cy%22%3A-14.098404978313487%2C%22sw%22%3A980.453298487689%2C%22sh%22%3A403.9917510976998%2C%22z%22%3A1.110761205260155%7D&amp;gco_forceIFrame=true&amp;gco_hasLabelsColumn=true&amp;width=500&amp;height=300"></iframe>
+  </div>
+  <div class="col-md-5">
+  <p style="margin-top: 50px">Djokovic appears to be the most influential player with clay surface although Nadal is known to have a 
+  persistent strong performance on clay surface. </p>
+  </div>
+</div> 
+    </div>
+  </div>
+
+
+<div style="margin-bottom: 30px"></div>
+
+
+<div class="panel panel-success">
+  <div class="panel-heading">Outcomes</div>
+  <div class="panel-body">From the visualized charts above, we can say that Djokovic is the most influential player during this period of time, who showed strong 
+dominance in all types of surfaces. Federer, Murray and Nadal are also shown to be one of the best players at that time.</div>
+</div>
+
+
+<div style="margin-bottom: 30px"></div>
       </div> <!-- /page-header -->
     </div> <!-- /container -->
 
